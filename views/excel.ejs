@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Excel</title>
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+      <style>
+            html,
+            body{
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                width: 100%;
+            }
+      </style>
+</head>
+<body>
+    <h4>Excel Which you have uploaded</h4>
+
+    <div style="height: 80%; overflow:scroll;">
+        
+    <table class="striped">
+            <% for(d of data){ %>
+                <tr style="border: 1px solid gray;">
+                    <% for(e of d){ %>
+                    <td style="border: 1px solid gray;"><%= e %></td>
+                    <% } %>
+                </tr>
+            <% } %>
+        </table>
+    </div>
+
+
+    
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

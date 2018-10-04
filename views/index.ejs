@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <title>App</title>
+
+    <style>
+        html,
+        body{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+        #wrapper{
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <div class="row">
+            <div class="col s12 m6 l4">
+
+            </div>
+            <div class="col s12 m6 l4 z-depth-2">
+                <div style="margin-top: 50px;">
+                    <p class="text-center">Please upload your excel sheet here</p>
+                    <form action="/app/file_upload" method="post" enctype="multipart/form-data">
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>File</span>
+                                <input type="file" name="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                        <p>Please Specify column name, if you only want to choose them <b>(comma seperated)</b></p>
+                        <p class="red-text">* please note: if you make any typo then that column will be ignored</p>
+                        <input type="text" name="chips">
+
+                        <input type="submit" value="Upload" class="btn btn-md" style="border-radius: 20px; margin: 20px;">
+
+                    </form>
+                </div>
+
+            </div>
+            <div class="col s12 m6 l4">
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(() => {
+            $('.chips-placeholder').chips({
+                placeholder: 'Enter a tag',
+                secondaryPlaceholder: '+Tag',
+            });
+        });
+    </script>
+
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>
