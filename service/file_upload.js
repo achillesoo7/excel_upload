@@ -1,5 +1,6 @@
-const _ = require('underscore');
+const async = require('async');
 const excelToJson = require('xlsx-to-json-lc');
+const Script = require('../nanp-script');
 
 exports.processFile = (file, columns) => {
     return new Promise((resolve, reject) => {
@@ -9,9 +10,25 @@ exports.processFile = (file, columns) => {
             lowerCaseHeaders: true
         }, (err, result) => {
             if (err) return reject(err);
+
+            var fin = [];
+
+           async.map(result, function(e,cb){
+                if(e.hasOwnProperty('phone number')){
+                    Script.readNumbers([e['phone number']]).then((res) => {
+                        e.region = res[0];
+                        fin.push(e);
+                        cb();
+                    }).catch((err) => {
+                        cb(err);
+                    });
+                }
+           }, function(err){
+            console.log('Inside callback');
+            if(err) reject(err);
             if(columns) columns = columns.split(',');
             var column_names_arr = [];
-            for (key in result[0]) {
+            for (key in fin[0]) {
                 column_names_arr.push(key);
             }
             if(columns.length){
@@ -22,6 +39,9 @@ exports.processFile = (file, columns) => {
             if(columns.length) column_names_arr = columns;
             var final = processExcel(column_names_arr, result);
             resolve(final);
+
+           });
+
         });
     });
 }

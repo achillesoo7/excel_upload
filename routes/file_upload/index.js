@@ -20,20 +20,22 @@ module.exports = function () {
             if (err) {
                 res.status(500).json({
                     status: 500,
-                    message: "Sorry its an internal server error"
-                });
-            }
-            FileUpload.processFile(req.file, req.body.chips).then((resp) => {
-               res.render('excel', {
-                   data: resp
-               });
-            }).catch((err) => {
-                res.status(500).json({
-                    status: 500,
                     message: "Sorry its an internal server error",
-                    error: err
+                    err: err
                 });
-            });
+            }else{
+                FileUpload.processFile(req.file, req.body.chips).then((resp) => {
+                    res.render('excel', {
+                        data: resp
+                    });
+                 }).catch((err) => {
+                     res.status(500).json({
+                         status: 500,
+                         message: "Sorry its an internal server error",
+                         error: err
+                     });
+                 });
+            }
         });
     });
 
